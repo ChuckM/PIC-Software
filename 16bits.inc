@@ -1,5 +1,6 @@
 ; 16BITS.INC      16 bit functions
 ; This Version    01-FEB-02    
+; vim: set syntax=pic :
 ; RCS Version   
 ; $Id: 16bits.inc,v 1.2 2002-04-22 22:35:05-07 cmcmanis Exp cmcmanis $
 ;
@@ -13,6 +14,7 @@
 ; $Id:$
 ;
 ; Change Log:
+;       22-JAN-13       Fixed ADD16 and SUB16 Macros
 ;       20-APR-O2       Updated CMP16, CMPI16
 ;       06-JAN-02       Created from the MATH16 file. Now
 ;                       it has a variety of operations.
@@ -144,7 +146,7 @@ SUB16   MACRO   DST, SRC
         SUBWF   (DST),F         ; Subtract DST(low) - SRC(low)
         MOVF    (SRC)+1,W       ; Now get high byte of subtrahend
         BTFSS   STATUS,C        ; If there was a borrow, rather than
-        INCF    (SRC)+1,W       ; decrement high byte of dst we inc src
+        INCFSZ  (SRC)+1,W       ; add 1 to subtrahend, skip sub if 0
         SUBWF   (DST)+1,F       ; Subtract the high byte and we're done
         ENDM
         
@@ -169,7 +171,7 @@ ADD16   MACRO   DST,SRC
         ADDWF   (DST),F         ; Add to destination
         MOVF    (SRC)+1,W       ; Get high byte
         BTFSC   STATUS,C        ; Check for carry
-        INCFSZ  (SRC)+1,W       ; Add one for carry
+        INCFSZ  (SRC)+1,W       ; Add one for carry skip if overflow
         ADDWF   (DST)+1,F       ; Add high byte into DST
         ENDM
 
