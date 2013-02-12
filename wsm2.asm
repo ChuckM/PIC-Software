@@ -1,5 +1,5 @@
 ; WSM2.ASM      Weapons Systems Control Module
-; vim : set syntax=pic :
+; vi: set syntax=pic :
 ; Written by    Chuck McManis (http://www.mcmanis.com/chuck)
 ; This Version  25-JUL-02
 ; Copyright (c) 2002 Charles McManis, All Rights Reserved
@@ -277,27 +277,6 @@ INIT:
 
 ; * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 ;     M A I N   P R O G R A M
-;
-; The PIC1 function is to monitor the temperature of the FETs, the
-; servo input, and the button. These combine to provide a command
-; that is sent to PIC2 over the serial port.
-;
-; During operation this function is responsible for slewing the
-; command from the current value to the desired value.
-;
-; The output consists of a four byte packet to set the command
-; and intensity:
-;       0xff <cmd> <intensity> <checksum>
-;       <cmd>   0 Reset
-;               1 Forward
-;               2 Reverse
-;               3 Brake
-;               4 Temperature
-;       <intensity>
-;               Integer between 0 and 198
-;       <checksum>
-;               Value that computes XOR sum to 0
-;               of all four bytes.
 ;
 ; This loop creates a simple priority scheme, when we start running
 ; at main, if we're in "UI_MODE", which means the user is calibrating

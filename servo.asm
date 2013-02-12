@@ -1,4 +1,6 @@
 ; vim: set syntax=pic :
+; See the article on http://robotics.mcmanis.com/
+;
 	TITLE	"Electronic Speed Control SERVO SOFTWARE"
 	LIST	P=16C54A, R=HEX, C=120
 	include "p16C5X.inc"

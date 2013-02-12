@@ -14,6 +14,7 @@
 ; $Id:$
 ;
 ; Change Log:
+;       26-JAN-13       Removed declaration of _REG_A and _REG_B
 ;       22-JAN-13       Fixed ADD16 and SUB16 Macros
 ;       20-APR-O2       Updated CMP16, CMPI16
 ;       06-JAN-02       Created from the MATH16 file. Now
@@ -33,13 +34,6 @@
 ; the most significant byte.
 ;
 ; * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-
-        
-;
-; These are the psuedo "registers" used by the 16 BIT operations
-;        
-_REG_A       EQU     H'007E'
-_REG_B       EQU     H'007C'
 
 ;
 ; 16 bit move from SRC to DST
